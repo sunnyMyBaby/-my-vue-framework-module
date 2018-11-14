@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <div class="header">
-     报警
+     检索
     </div>
     <div class="menu-box">
       <div class="left-menu">

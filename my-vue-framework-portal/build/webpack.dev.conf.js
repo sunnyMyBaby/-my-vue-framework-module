@@ -67,8 +67,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       // 把moduleA的文档拷贝到内存里边一边通过http://localhost:8080/test/moduleA/static/js/searchAsyncModule.js访问到
       // http://localhost:8080/moduleA/static/js/searchAsyncModule.js
       {
-        from: path.resolve(__dirname, '../moduleA'),
-        to: './moduleA',
+        from: path.resolve(__dirname, '../alarm'),
+        to: './alarm',
+        ignore: ['.*']
+      },
+      {
+        from: path.resolve(__dirname, '../search'),
+        to: './search',
         ignore: ['.*']
       }
     ])

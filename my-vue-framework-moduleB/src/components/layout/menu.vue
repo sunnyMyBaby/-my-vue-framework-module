@@ -1,15 +1,15 @@
 <template>
   <div class="menu">
     <div>
-      <router-link :to="{path: '/alarmHistory'}">历史报警</router-link>
+      <router-link :to="{path: '/faceSearch'}">人脸检索</router-link>
     </div>
     <!-- <div>历史报警</div> -->
     <div>
-      <router-link :to="{path: '/alarmRealtime'}">实时报警</router-link>
+      <router-link :to="{path: '/captureSearch'}">抓拍检索</router-link>
     </div>
     <!-- <div>实时报警</div> -->
     <div>
-      <router-link :to="{path: '/surveillanceTask'}">布控任务</router-link>
+      <router-link :to="{path: '/searchLog'}">检索日志</router-link>
     </div>
     <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
       <el-radio-button :label="false">展开</el-radio-button>
