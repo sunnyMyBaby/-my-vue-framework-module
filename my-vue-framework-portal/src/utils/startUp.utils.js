@@ -34,20 +34,24 @@ const loadAsyncModuleFactory = (path)=>{
 // 加载异步组件
 // asyncModuleFactory('alarm', 'results', resolve)
 const asyncModuleFactory = (parentNav, navName, resolve) => {
+  console.log('------------')
+  console.log(parentNav, navName, resolve);
   const moduleName = `${navName}AsyncModule`
   const modulePath = `${modulePublicPath}/${parentNav}/static/js/${moduleName}.js`
+
   const loadScript = loadAsyncModuleFactory(modulePath)
   // 在module配置打包的时候到处是以export.default方式进行的
   // 而且在配置打包的时候会有一个模块变量名，加载完成之后这个变量名就会挂载到window下面
   // export.default的内容其实包括了
+  // console.log(parentNav, navName);
   loadScript.then(()=>{
     // 注册自路由模块
-    console.log(window);// 这里包含了模块导出配置的export.js里的内容store，router等
+    // console.log(window);// 这里包含了模块导出配置的export.js里的内容store，router等
     const asyncModule = window[moduleName].default
-    console.log(asyncModule);
-    console.log(parentNav,navName);
     window.insightApp.methods.registerAsyncRouter(asyncModule.routes,parentNav,navName)
-    window.insightApp.methods.registerStore(asyncModule.store);
+    window.insightApp.methods.registerStore(asyncModule.store, navName);
+    window.insightApp.methods.registerLocale(asyncModule.i18n);
+    console.log(asyncModule.i18n);
     resolve(asyncModule.module);
   })
 }
@@ -75,6 +79,7 @@ const buildRoutesByMenus = (systemMenu)=>{
     // 二级路由
     const subNav = pNav.childPermissions
     subNav.forEach((sNav)=>{
+      console.log(sNav)
       const defaultNavName = subNav[0].alias;
       const subName = sNav.alias;
       const secondRoute = {

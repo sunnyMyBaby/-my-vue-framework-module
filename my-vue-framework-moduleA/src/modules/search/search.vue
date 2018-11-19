@@ -6,7 +6,6 @@
     <div>
       regester的：{{ getRtitle }}
     </div>
-    <router-view/>
   </div>
 </template>
 

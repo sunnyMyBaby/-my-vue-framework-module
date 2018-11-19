@@ -6,14 +6,20 @@ import router from '@/utils/utils.router.js'
 import store from '@/store/index.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import i18n from '@/utils/utils.i18n'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-Vue.use(ElementUI)
+// 注册elementui
+Vue.use(ElementUI, {
+  i18n: (key, value)=> i18n.t(key, value)
+});
+
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

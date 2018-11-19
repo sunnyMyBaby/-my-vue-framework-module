@@ -1,5 +1,6 @@
 <template>
   <div class="head-nav">
+    <span>{{$t('portal.title')}}</span>
     <router-link v-for="headNav in headNavs" :key="headNav.id"
       class="nav"
       :to="`/${headNav.alias}`">
@@ -23,6 +24,7 @@
     methods: {
       setParentRoute(to) {
         console.log(to);
+        console.log(this.$route)
         this.$store.dispatch('setNavsByParentAsync', to.meta.parent).then(()=>{
 
         })

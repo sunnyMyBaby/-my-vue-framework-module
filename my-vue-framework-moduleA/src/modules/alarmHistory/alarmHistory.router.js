@@ -1,4 +1,5 @@
 import layout from '@/modules/layout/layout'
+import alarmHistoryChiern from './aaa/alarmHistoryChiern'
 export default [{
   path: '/alarmHistory',
   component: layout,
@@ -6,7 +7,17 @@ export default [{
     {
       path: '',
       name: 'alarmHistory',
-      component: ()=> import('./alarmHistory.vue')
+      component: ()=> import(/* webpackChunkName: "alarmHistory" */ './alarmHistory.vue')
+    },
+    {
+      path: 'alarmHistoryChiern',
+      name: 'alarmHistoryChiern',
+      component: alarmHistoryChiern
+    },
+    {
+      path: 'alarmHistoryChiernTwo',
+      name: 'alarmHistoryChiernTwo',
+      component: ()=> import(/* webpackChunkName: "alarmHistoryChiernTwo" */ './aaa/alarmHistoryChiernTwo.vue')
     }
   ]
 }]

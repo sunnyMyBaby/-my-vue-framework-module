@@ -7,7 +7,17 @@ const vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-
+// 这个配置是配置打包出去的的静态文件在集成的时候访问的目录路径
+let publicPath = '/';
+if(process.env.NODE_ENV === 'production') {
+  publicPath = config.build.assetsPublicPath;
+} else if(process.env.NODE_ENV === 'publish') {
+  publicPath = config.pub.assetsPublicPath;
+} else {
+  publicPath = config.dev.assetsPublicPath;
+}
+console.log('aaaaaaaaaa----------')
+console.log(publicPath);
 
 
 module.exports = {
@@ -18,9 +28,11 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    // 这里要配置静态文件路径不然访问不到
+    publicPath: '/'
+    // process.env.NODE_ENV === 'production'
+    //   ? config.build.assetsPublicPath
+    //   : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

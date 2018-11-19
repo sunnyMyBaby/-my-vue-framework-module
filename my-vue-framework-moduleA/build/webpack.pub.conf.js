@@ -12,8 +12,6 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = require('../config/publish.env')
-console.log('ssssssssss')
-console.log(env);
 const webpackConfig = merge(baseWebpackConfig, {
   // 这里的入口和正常打包是不同的，所以这里我们暂时为空，在publish里边我们在配置
   entry: {},

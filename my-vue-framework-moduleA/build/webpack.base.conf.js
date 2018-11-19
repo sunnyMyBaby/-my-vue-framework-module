@@ -8,8 +8,21 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
+// 这个配置是配置打包出去的的静态文件在集成的时候访问的目录路径
+// 比如说publish访问的静态文件是/alarm/下的
+// 比如说在历史报警下有个子路由alarmHistoryChiernTwo，如果这里不设置访问/alarm/下的那么我们在集成环境就不能加载到该文件
+// 而是只能加载到static下的
+let publicPath = '/';
+if(process.env.NODE_ENV === 'production') {
+  publicPath = config.build.assetsPublicPath;
+  // build ./alarm/
+} else if(process.env.NODE_ENV === 'publish') {
+  publicPath = config.pub.assetsPublicPath;
+  // pub /alarm/
+} else {
+  publicPath = config.dev.assetsPublicPath;
+  // dev / 
+}
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -18,9 +31,10 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: publicPath
+    // publicPath: process.env.NODE_ENV === 'production'
+    //   ? config.build.assetsPublicPath
+    //   : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

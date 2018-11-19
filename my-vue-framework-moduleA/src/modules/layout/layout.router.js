@@ -2,5 +2,5 @@ export default [{
   path: '/',
   name: 'layout',
   redirect:'/alarmRealtime',
-  component: ()=> import(/* webpackChunkName: "appview" */'@/modules/layout/layout')
+  component: ()=> import(/* webpackChunkName: "layout" */'@/modules/layout/layout')
 }]

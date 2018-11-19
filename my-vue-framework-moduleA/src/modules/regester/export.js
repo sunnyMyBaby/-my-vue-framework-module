@@ -5,5 +5,9 @@ import store from '@/store/modules/regester.js'
 export default {
   module,
   routes,
-  store
+  store,
+  i18n:{
+    enUS,
+    zhCN
+  }
 }
